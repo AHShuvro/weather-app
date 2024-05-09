@@ -12,7 +12,7 @@
     <div class="card">
         <div class="search">
             <input type="text" placeholder="Enter city name" name="" id="cityInp" spellcheck="false">
-            <button id="cityBtn"><img src="images/search.png" alt=""></button>
+            <button id="searchBtn"><img src="images/search.png" alt=""></button>
         </div>
         <div class="error">
             <p>Invalid city name</p>
@@ -46,7 +46,7 @@
         const apiKey = "96cb3a82bd6a477de3bbd04695bed271"
         const apiUrl = "https://api.openweathermap.org/data/2.5/weather?&units=metric&q=";
         const searchBox = document.getElementById("cityInp")
-        const searchBtn = document.getElementById("cityBtn")
+        const searchBtn = document.getElementById("searchBtn")
         const wetherIcon = document.querySelector(".weather-icon")
 
 
@@ -98,8 +98,15 @@
 
         searchBtn.addEventListener("click", () => {
             checkWeather(searchBox.value);
+
             searchBox.value = '';
         })
+        searchBox.addEventListener("keypress", (event) => {
+            if (event.key === 'Enter') {
+                checkWeather(searchBox.value);
+                searchBox.value = '';
+            }
+        });
 
     </script>
 
